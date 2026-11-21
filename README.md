@@ -7,17 +7,15 @@ Movies & TV Explorer is a responsive web app for finding movies and TV shows. It
 | | |
 |---|---|
 | **Developer** | Mohammad Muhaiminur Rahman |
-| **GitHub** | [MRT-Tahmid]([YOUR_GITHUB_PROFILE_URL]) |
+| **GitHub** | [MRT-Tahmid](https://github.com/MRT-Tahmid) |
 | **Institution** | International Islamic University Chittagong (IIUC) |
 | **Department** | Computer Science and Engineering |
 | **Course** | CSE-2340 — Software Development I |
 | **Assessment** | Mini Project 3–4 (MP3–MP4), individual academic project |
 | **Project** | Movies & TV Shows Explorer |
-| **Repository** | [YOUR_REPOSITORY_URL]([YOUR_REPOSITORY_URL]) |
-| **Live website** | [YOUR_VERCEL_DEPLOYMENT_URL]([YOUR_VERCEL_DEPLOYMENT_URL]) |
-| **Email** | [YOUR_EMAIL_ADDRESS] |
-
-> Replace the bracketed placeholders with your real URLs and email before submitting.
+| **Repository** | [https://github.com/MRT-Tahmid/movies-tv_series-explorer](https://github.com/MRT-Tahmid/movies-tv_series-explorer) |
+| **Live website** | [https://movies-tvseries-explorer.vercel.app/](https://movies-tvseries-explorer.vercel.app/) |
+| **Email** | [muhaiminur.rahman2005@gmail.com](mailto:muhaiminur.rahman2005@gmail.com) |
 
 The same information is shown inside the app on the **About** page (top navigation).
 
@@ -144,6 +142,6 @@ Developer: Mohammad Muhaiminur Rahman (GitHub: MRT-Tahmid), Computer Science and
 Use these values in the repository sidebar (the gear icon next to **About**):
 
 - **Description:** An interactive Movies & TV Shows Explorer built with HTML, CSS, and Vanilla JavaScript using TMDB and TVmaze APIs.
-- **Website:** your deployed Vercel URL (add it when available).
+- **Website:** https://movies-tvseries-explorer.vercel.app/
 
 GitHub's About panel only holds a description, website and topics, so the detailed developer information lives in this README and on the website's About page.
