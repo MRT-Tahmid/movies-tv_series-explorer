@@ -7,19 +7,19 @@ Movies & TV Explorer is a responsive web app for finding movies and TV shows. It
 | | |
 |---|---|
 | **Developer** | Mohammad Muhaiminur Rahman |
-| **GitHub** | [MRT-Tahmid]([YOUR_GITHUB_PROFILE_URL]) |
+| **GitHub** | [MRT-Tahmid]([https://github.com/MRT-Tahmid]) |
 | **Institution** | International Islamic University Chittagong (IIUC) |
 | **Department** | Computer Science and Engineering |
 | **Course** | CSE-2340 — Software Development I |
 | **Assessment** | Mini Project 3–4 (MP3–MP4), individual academic project |
 | **Project** | Movies & TV Shows Explorer |
-| **Repository** | [YOUR_REPOSITORY_URL]([YOUR_REPOSITORY_URL]) |
-| **Live website** | [YOUR_VERCEL_DEPLOYMENT_URL]([YOUR_VERCEL_DEPLOYMENT_URL]) |
-| **Email** | [YOUR_EMAIL_ADDRESS] |
+| **Repository** | [https://github.com/MRT-Tahmid/movies-tv_series-explorer] |
+| **Live website** | [https://movies-tvseries-explorer.vercel.app/]) |
+| **Email** | [muhaiminur.rahman2005@gmail.com] |
 
-> Replace the bracketed placeholders with your real URLs and email before submitting.
 
-The same information is shown inside the app on the **About** page (top navigation).
+
+
 
 ## Features
 - **Home:** cinematic hero with search, a featured movie, Trending Movies and Popular TV Shows rows
@@ -63,19 +63,8 @@ Base URL: `https://api.themoviedb.org/3`
 
 TMDB requires a key, so movies will not load until you add one. TV shows work without it.
 
-## Set up your TMDB API key
-1. Create a free account at <https://www.themoviedb.org/signup>.
-2. Open **Settings > API** and request a key (choose **Developer**, personal or educational use).
-3. Copy the **API Key** (the short v3 key, not the long "Read Access Token").
-4. Open `js/config.js` and paste it between the quotes:
-   ```js
-   window.APP_CONFIG = {
-     TMDB_API_KEY: "paste-your-key-here",
-   };
-   ```
-5. Reload the page.
 
-The key is kept only in `js/config.js`; the rest of the code reads it from there. Because this is a front-end project, anyone who opens your deployed site can see the key. TMDB keys are free, so this is acceptable for a class project, but never put a paid or private key in front-end code. If you do not want your key on GitHub, do not commit your edited `config.js`.
+   ```
 
 ## Run the project
 1. Open the `tv-show-explorer` folder in VS Code.
