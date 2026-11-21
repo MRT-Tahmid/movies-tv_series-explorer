@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movies &amp; TV Explorer</title>
+  <meta name="description" content="Search movies and TV shows, read details, and save them to one watchlist.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation bar -->
+  <header class="navbar">
+    <a href="#" class="logo" data-view="home">Movies &amp; TV Explorer</a>
+    <button id="menu-toggle" type="button" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
+    <nav id="nav-links" class="nav-links" aria-label="Main">
+      <a href="#" data-view="home" class="active" aria-current="page">Home</a>
+      <a href="#" data-view="movies">Movies</a>
+      <a href="#" data-view="tv">TV Shows</a>
+      <a href="#" data-view="watchlist">My Watchlist <span id="watch-count" class="badge">0</span></a>
+      <a href="#" data-view="about">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME: hero search + trending rows -->
+    <section id="view-home" class="view">
+      <div class="hero" id="hero">
+        <h1>Discover Your Next Favorite Movie or Show.</h1>
+        <p class="hero-sub">Search movies and television shows, see what is trending, and save everything to one watchlist.</p>
+        <div class="search-box">
+          <select id="hero-type" aria-label="Search in">
+            <option value="movie">Movies</option>
+            <option value="tv">TV shows</option>
+          </select>
+          <input id="search-input" type="search" placeholder="Search by title, e.g. Batman" aria-label="Search by title" autocomplete="off">
+          <button id="search-btn" type="button" class="btn btn-primary">Search</button>
+        </div>
+        <div id="hero-status" class="status" role="status" aria-live="polite"></div>
+        <div id="featured" class="featured"></div>
+        <p class="hero-note">Movie data from TMDB. TV data from TVmaze.</p>
+      </div>
+
+      <div class="container">
+        <h2>Trending Movies</h2>
+        <p class="section-sub">What people are watching this week.</p>
+        <div id="home-movies-status" class="status" role="status" aria-live="polite"></div>
+        <div id="home-movies-row" class="row"></div>
+
+        <h2 class="row-title">Popular TV Shows</h2>
+        <p class="section-sub">Highly rated shows from the TVmaze catalog.</p>
+        <div id="home-tv-status" class="status" role="status" aria-live="polite"></div>
+        <div id="home-tv-row" class="row"></div>
+      </div>
+    </section>
+
+    <!-- MOVIES -->
+    <section id="view-movies" class="view hidden">
+      <div class="container">
+        <h2 class="browse-heading">Movies</h2>
+        <p class="section-sub">Search by title or browse what is trending.</p>
+        <div class="search-box">
+          <input class="search-input" type="search" placeholder="Search movies, e.g. Inception" aria-label="Search movies" autocomplete="off">
+          <button type="button" class="btn btn-primary search-btn">Search</button>
+        </div>
+        <div class="toolbar">
+          <p class="result-count"></p>
+          <div class="controls">
+            <label>Genre <select class="genre-filter"><option value="all">All genres</option></select></label>
+            <label>Sort
+              <select class="sort-select">
+                <option value="default">Default order</option>
+                <option value="rating">Highest rating</option>
+              </select>
+            </label>
+            <button type="button" class="btn btn-ghost clear-btn">Clear search</button>
+          </div>
+        </div>
+        <div class="status browse-status" role="status" aria-live="polite"></div>
+        <div class="grid browse-grid"></div>
+      </div>
+    </section>
+
+    <!-- TV SHOWS -->
+    <section id="view-tv" class="view hidden">
+      <div class="container">
+        <h2 class="browse-heading">TV Shows</h2>
+        <p class="section-sub">Search by title or browse the top-rated shows.</p>
+        <div class="search-box">
+          <input class="search-input" type="search" placeholder="Search TV shows, e.g. Breaking Bad" aria-label="Search TV shows" autocomplete="off">
+          <button type="button" class="btn btn-primary search-btn">Search</button>
+        </div>
+        <div class="toolbar">
+          <p class="result-count"></p>
+          <div class="controls">
+            <label>Genre <select class="genre-filter"><option value="all">All genres</option></select></label>
+            <label>Sort
+              <select class="sort-select">
+                <option value="default">Default order</option>
+                <option value="rating">Highest rating</option>
+              </select>
+            </label>
+            <button type="button" class="btn btn-ghost clear-btn">Clear search</button>
+          </div>
+        </div>
+        <div class="status browse-status" role="status" aria-live="polite"></div>
+        <div class="grid browse-grid"></div>
+      </div>
+    </section>
+
+    <!-- MY WATCHLIST: movies and TV shows together -->
+    <section id="view-watchlist" class="view hidden">
+      <div class="container">
+        <h2>My Watchlist</h2>
+        <p class="section-sub">Saved in this browser, so it is still here after a refresh.</p>
+        <div class="toolbar">
+          <div class="controls">
+            <label>Show
+              <select id="watchlist-filter">
+                <option value="all">Movies and TV shows</option>
+                <option value="movie">Movies only</option>
+                <option value="tv">TV shows only</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div id="watchlist-status" class="status" role="status" aria-live="polite"></div>
+        <div id="watchlist-grid" class="grid"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="view-about" class="view hidden" aria-labelledby="about-title">
+      <div class="container about">
+        <header class="about-header">
+          <h2 id="about-title">About This Project</h2>
+          <p class="section-sub">Project details, developer information and academic context.</p>
+        </header>
+
+        <!-- A. Project information -->
+        <section class="about-block" aria-labelledby="about-project-title">
+          <h3 id="about-project-title" class="about-heading">Project Information</h3>
+          <div class="about-panel">
+            <p class="about-name">Movies &amp; TV Shows Explorer</p>
+            <p class="about-text">An interactive, frontend-only web application for discovering movies and TV shows. Search both catalogs, read details, browse TV episodes by season, and keep movies and shows together in one watchlist that survives a page refresh.</p>
+          </div>
+
+          <div class="about-grid">
+            <article class="about-panel">
+              <h4>Objectives</h4>
+              <ul class="about-list">
+                <li>Fetch and display live data from public REST APIs using <code>fetch()</code> and <code>async/await</code>.</li>
+                <li>Build a responsive, accessible interface with plain HTML, CSS and JavaScript.</li>
+                <li>Handle loading, error and empty states gracefully.</li>
+                <li>Persist user data in the browser with Local Storage.</li>
+              </ul>
+            </article>
+            <article class="about-panel">
+              <h4>Main Features</h4>
+              <ul class="about-list">
+                <li>Search movies and TV shows by title.</li>
+                <li>Genre filtering and sorting by rating.</li>
+                <li>Detail windows with episodes by season for TV shows.</li>
+                <li>Combined My Watchlist stored in Local Storage.</li>
+                <li>Responsive layout with a dark theme.</li>
+              </ul>
+            </article>
+            <article class="about-panel">
+              <h4>Technologies Used</h4>
+              <ul class="chips" aria-label="Technologies">
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>Vanilla JavaScript (ES6+)</li>
+                <li>Fetch API</li>
+                <li>Local Storage</li>
+              </ul>
+            </article>
+            <article class="about-panel">
+              <h4>APIs Used</h4>
+              <ul class="about-list">
+                <li><a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB API</a> for movies.</li>
+                <li><a href="https://www.tvmaze.com" target="_blank" rel="noopener">TVmaze API</a> for TV shows.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <!-- B + C. Developer information card -->
+        <section class="about-block" aria-labelledby="about-dev-title">
+          <h3 id="about-dev-title" class="about-heading">Developer Information</h3>
+          <article class="dev-card">
+            <div class="dev-avatar" aria-hidden="true">MR</div>
+            <div class="dev-main">
+              <h4 class="dev-name">Mohammad Muhaiminur Rahman</h4>
+              <p class="dev-role">Student Developer &middot; Computer Science and Engineering</p>
+              <p class="dev-inst">International Islamic University Chittagong (IIUC)</p>
+
+              <dl class="dev-facts">
+                <div><dt>GitHub Username</dt><dd>MRT-Tahmid</dd></div>
+                <div><dt>Department</dt><dd>Computer Science and Engineering</dd></div>
+                <div><dt>Course</dt><dd>CSE-2340 &mdash; Software Development I</dd></div>
+                <div><dt>Project Type</dt><dd>Individual Academic Mini Project</dd></div>
+                <div><dt>Project</dt><dd>MP3&ndash;MP4</dd></div>
+              </dl>
+
+              <div class="dev-actions">
+                <!-- Replace each href with the real URL, then delete data-placeholder. -->
+                <a class="btn btn-primary btn-small" href="#" data-placeholder="GitHub profile" aria-label="GitHub profile">GitHub Profile</a>
+                <a class="btn btn-ghost btn-small" href="#" data-placeholder="Project repository" aria-label="Project repository">Project Repository</a>
+                <a class="btn btn-ghost btn-small" href="#" data-placeholder="Live website" aria-label="Live website">Live Project</a>
+              </div>
+
+              <ul class="dev-links" aria-label="Developer links">
+                <li><span>GitHub Profile</span> <a href="#" data-placeholder="GitHub profile">[YOUR_GITHUB_PROFILE_URL]</a></li>
+                <li><span>Project Repository</span> <a href="#" data-placeholder="Project repository">[YOUR_REPOSITORY_URL]</a></li>
+                <li><span>Live Website</span> <a href="#" data-placeholder="Live website">[YOUR_VERCEL_DEPLOYMENT_URL]</a></li>
+                <li><span>Email</span> <a href="#" data-placeholder="Email address">[YOUR_EMAIL_ADDRESS]</a></li>
+              </ul>
+            </div>
+          </article>
+        </section>
+
+        <!-- 3. Academic project information -->
+        <section class="about-block" aria-labelledby="about-academic-title">
+          <h3 id="about-academic-title" class="about-heading">Academic Project Information</h3>
+          <dl class="academic">
+            <div><dt>Academic Institution</dt><dd>International Islamic University Chittagong</dd></div>
+            <div><dt>Department</dt><dd>Computer Science and Engineering</dd></div>
+            <div><dt>Course</dt><dd>CSE-2340 &mdash; Software Development I</dd></div>
+            <div><dt>Assessment</dt><dd>Mini Project 3&ndash;4 (MP3&ndash;MP4)</dd></div>
+            <div><dt>Project Category</dt><dd>Interactive API-Driven Web Application</dd></div>
+            <div><dt>Submission Type</dt><dd>Individual Project</dd></div>
+          </dl>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <!-- Details modal -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Details" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-box">
+      <button id="modal-close" type="button" class="modal-close" aria-label="Close details">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <strong>Movies &amp; TV Explorer</strong>
+    <p>Find movies and shows, read details and keep one watchlist.</p>
+    <p>TV data provided by <a href="https://www.tvmaze.com" target="_blank" rel="noopener">TVmaze</a>.
+      Movie data from <a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB</a>. This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+    <p>&copy; 2026 Movies &amp; TV Explorer. Made for CSE-2340.</p>
+  </footer>
+
+  <!-- Short message for problems such as blocked storage -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
