@@ -7,7 +7,7 @@ Movies & TV Explorer is a responsive web app for finding movies and TV shows. It
 | | |
 |---|---|
 | **Developer** | Mohammad Muhaiminur Rahman |
-| **GitHub** | [MRT-Tahmid]([https://github.com/MRT-Tahmid]) |
+| **GitHub** | [https://github.com/MRT-Tahmid] |
 | **Institution** | International Islamic University Chittagong (IIUC) |
 | **Department** | Computer Science and Engineering |
 | **Course** | CSE-2340 — Software Development I |
